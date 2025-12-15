@@ -191,5 +191,9 @@ namespace OplusEdlTool.Services
         public static string SelectReadMethodMessage => LanguageService.IsChinese 
             ? "选择读取方式:\n\n是 - 自动读取 (读取分区表中选中的分区)\n否 - 自定义 XML 读取 (读取 XML 文件中指定的分区)\n取消 - 取消操作" 
             : "Choose read method:\n\nYES - Auto Read (Read selected partitions from partition table)\nNO - Custom XML Read (Read partitions specified in XML files)\nCANCEL - Cancel operation";
+        public static string PersistPartitionWarning => LanguageService.IsChinese ? "Persist分区警告" : "Persist Partition Warning";
+        public static string PersistPartitionWarningMessage => LanguageService.IsChinese 
+            ? "您选择了刷写persist分区。\n\n警告：刷写persist分区可能会导致传感器或指纹功能丢失！\n\n是否要继续刷写persist分区？\n\n选择\"是\"继续刷写，选择\"否\"跳过persist分区。" 
+            : "You have selected to flash the persist partition.\n\nWarning: Flashing the persist partition may cause sensor or fingerprint functionality loss!\n\nDo you want to continue flashing the persist partition?\n\nSelect 'Yes' to continue flashing, select 'No' to skip the persist partition.";
     }
 }

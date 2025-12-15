@@ -1412,6 +1412,33 @@ namespace OplusEdlTool
             var selected = rows.Where(r => r.IsSelected && !string.IsNullOrEmpty(r.FilePath) && !r.FilePath.StartsWith("[NOT FOUND]")).ToList();
             if (selected.Count == 0) { AppendLog(Lang.NoValidPartitions); return; }
 
+            var persistPartitions = selected.Where(r => r.Name.Equals("persist", StringComparison.OrdinalIgnoreCase)).ToList();
+            if (persistPartitions.Count > 0)
+            {
+                var persistResult = System.Windows.MessageBox.Show(
+                    Lang.PersistPartitionWarningMessage,
+                    Lang.PersistPartitionWarning,
+                    MessageBoxButton.YesNoCancel,
+                    MessageBoxImage.Warning);
+                
+                if (persistResult == MessageBoxResult.Cancel)
+                {
+                    AppendLog("用户取消了刷机操作");
+                    return;
+                }
+                else if (persistResult == MessageBoxResult.No)
+                {
+                    // 用户选择跳过persist分区
+                    selected = selected.Where(r => !r.Name.Equals("persist", StringComparison.OrdinalIgnoreCase)).ToList();
+                    if (selected.Count == 0)
+                    {
+                        AppendLog("已跳过persist分区，没有其他分区需要刷写");
+                        return;
+                    }
+                    AppendLog("已跳过persist分区，继续刷写其他分区");
+                }
+            }
+
             var confirmMsg = string.Format(Lang.ConfirmFlashMessage, selected.Count) +
                 string.Join(", ", selected.Take(10).Select(r => r.Name)) + 
                 (selected.Count > 10 ? string.Format(Lang.AndMore, selected.Count - 10) : "");
