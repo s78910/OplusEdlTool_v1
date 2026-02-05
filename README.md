@@ -95,10 +95,10 @@ v2版本可能包含：
 ### 构建步骤
 ```bash
 # 克隆仓库
-git clone https://github.com/salokrwhite/OplusEdlTool_v1.git
+git clone https://github.com/salokrwhite/OplusEdlTool.git
 
 # 进入项目目录
-cd OplusEdlTool_v1  
+cd OplusEdlTool  
 
 # 还原依赖
 dotnet restore
@@ -117,7 +117,7 @@ dotnet build -c Release
 
 ## 📞 支持与反馈
 
-- 提交Issue: [GitHub Issues](https://github.com/salokrwhite/OplusEdlTool_v1/issues)
+- 提交Issue: [GitHub Issues](https://github.com/salokrwhite/OplusEdlTool/issues)
 
 ## ⚖️ 法律声明
 

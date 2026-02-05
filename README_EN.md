@@ -95,10 +95,10 @@ v2 version may include:
 ### Build Steps
 ```bash
 # Clone repository
-git clone https://github.com/salokrwhite/OplusEdlTool_v1.git
+git clone https://github.com/salokrwhite/OplusEdlTool.git
 
 # Enter project directory
-cd OplusEdlTool_v1
+cd OplusEdlTool
 
 # Restore dependencies
 dotnet restore
@@ -117,7 +117,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📞 Support & Feedback
 
-- Submit Issues: [GitHub Issues](https://github.com/salokrwhite/OplusEdlTool_v1/issues)
+- Submit Issues: [GitHub Issues](https://github.com/salokrwhite/OplusEdlTool/issues)
 
 ## ⚖️ Legal Statement
 
