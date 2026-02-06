@@ -11,7 +11,6 @@ namespace OplusEdlTool.Services
     public static class ProcessRunner
     {
         public static bool VerboseLogging { get; set; } = false;
-
         private static string? _lastFlashedPartition = null;
 
         private static string GetWorkDir()
@@ -173,6 +172,7 @@ namespace OplusEdlTool.Services
                 }
                 catch
                 {
+                    
                 }
             }
         }

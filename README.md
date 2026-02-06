@@ -1,127 +1,161 @@
-# OPLUS EDL Tool v1
+# OPLUS EDL Tool (v2)
 
-一个开源的OPLUS手机EDL模式刷机工具，支持大多数OPLUS手机的EDL模式操作。
+🌐 **Language:** [English](README.md) | [中文](README.zh.md)
 
-**[English Version](README_EN.md) | 中文版本**
+> **⚠️ Version Notice:** This is **v2**, a major rewrite of the original tool. The legacy v1 codebase (WPF-based) is archived in the [`v1_old_code/`](v1_old_code/) directory for reference.
+>
+> 🚀 **Latest Version:** The newer **v3** (closed-source) is available [here](https://static-tcdn.anteasy.com/xasdun/upload-log/oet-upload.html)
 
-## ⚠️ 重要声明
+A cross-platform EDL (Emergency Download) flashing tool for OPLUS (OPPO/OnePlus/Realme) devices, built with Avalonia UI.
 
-**此工具仅供技术研究和开发使用，使用本工具可能导致设备损坏、数据丢失或失去保修资格。请在使用前充分了解相关风险，开发者不对任何因使用本工具造成的损失负责。**
+## What's New in v2
 
-## 🚀 功能特性
+v2 is a complete rewrite with the following improvements:
 
-### 当前版本 (v1)
-- ✅ EDL模式检测与连接
-- ✅ Firehose协议支持
-- ✅ 分区表读写
-- ✅ XML配置文件处理
-- ✅ 分区清理功能
-- ✅ 多语言支持（中英文）
-- ✅ 图形化界面操作
-- ✅ 管理员权限运行
+- **New UI Framework**: Migrated from WPF to **Avalonia UI**
+- **Better Architecture**: Cleaner codebase with improved maintainability
+- **Improved Performance**: Faster partition parsing and flashing operations
+- **Native AOT Compilation**: Single-file deployment, no .NET runtime required, faster startup
 
-### 支持的手机型号
-- 支持大多数OPLUS手机EDL模式
-- 部分新型号手机需要用户自行测试，不保证完全兼容
+## Features
 
-## 📋 系统要求
+- **Enter Firehose Mode**: Load device programmer (devprg*.mbn) with digest and signature files
+- **Flash ROM Packages**: Support for extracted ROM folders, OFP and OPS encrypted packages
+- **Partition Management**: 
+  - Read partition table from device
+  - Read/Write/Erase individual partitions
+  - Batch flash selected partitions
+- **Super Partition Support**: Automatic merge of segmented super images (super.0.xxx.img, super.1.xxx.img, etc.), supports merging based on super_def.00000000.json definition
+- **Multi-language Support**: English and Chinese interface
+- **Auto Port Detection**: Automatic detection of Qualcomm 9008 EDL port
 
-- Windows 7/8/10/11 (64位推荐)
+## Screenshots
+
+### Read Partition Table
+![Read Partition Table](Picture/ReadGPT.png)
+
+### Backup Partitions
+![Backup Partitions](Picture/ReadPartition.png)
+
+## Requirements
+
+- Windows 10/11 (x64)
 - .NET 8.0 Runtime
-- 管理员权限
-- USB 2.0/3.0 接口
+- Qualcomm USB drivers installed
 
-## 🔧 安装使用
+## Building from Source
 
-### 快速开始
-1. 下载最新版本的发布包
-2. 解压到任意目录
-3. 右键 `OplusEdlTool.exe` → "以管理员身份运行"
-4. 将手机进入EDL模式并连接电脑
-5. 按照界面提示进行操作
+### Prerequisites
 
-### 进入EDL模式方法
-不同机型进入EDL模式的方法可能不同，常见方法：
-- 完全关机后，按住音量上下键同时插入USB线
-- 使用ADB命令：`adb reboot edl`
-- 使用fastboot命令：`fastboot oem edl`
-
-## 📖 使用说明
-
-### 软件截图
-![主界面](picture/mainwindow.png)
-*主应用程序界面，显示所有可用功能*
-
-#### 功能使用
-![功能使用](picture/pic2.jpg)
-*功能使用相关截图*
-
-### 主界面功能
-- **Firehose**: Firehose协议操作
-- **Partitions**: 分区管理
-- **Read XML**: 读取XML配置
-- **Write XML**: 写入XML配置  
-- **Cleanup**: 分区清理
-
-### 注意事项
-- 操作前请备份重要数据
-- 确保手机电量充足（建议50%以上）
-- 使用原装或高质量USB线
-- 操作过程中不要断开连接
-
-## 🔄 版本信息
-
-### v1版本
-- 当前开源版本
-- 支持大多数主流OPLUS手机
-- 基础功能完整
-
-### v2版本
-如需使用更高级的v2版本，请访问：
-**https://static-tcdn.anteasy.com/xasdun/upload-log/oet-upload.html**
-
-v2版本可能包含：
-- 更广泛的设备支持
-- 高级功能
-- 专业技术支持
-
-## 🛠️ 编译构建
-
-### 开发环境
-- Visual Studio 2022 或更高版本
 - .NET 8.0 SDK
-- Windows SDK
+- Visual Studio 2022 or JetBrains Rider (optional)
 
-### 构建步骤
+### Build Commands
+
 ```bash
-# 克隆仓库
-git clone https://github.com/salokrwhite/OplusEdlTool.git
+# Clone the repository
+git clone https://github.com/salokrwhite/Oplus_EDL_Tool.git
+cd Oplus_EDL_Tool
 
-# 进入项目目录
-cd OplusEdlTool  
-
-# 还原依赖
+# Restore dependencies
 dotnet restore
 
-# 构建项目
-dotnet build -c Release
+# Build
+dotnet build
+
+# Run
+dotnet run
+
+# Publish (AOT compiled)
+dotnet publish -c Release
 ```
 
-## 📄 许可证
+## Usage
 
-本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
+### 1. Enter Firehose Mode
 
-## 🤝 贡献
+If your device is in EDL mode but not in Firehose mode:
 
-欢迎提交Issue和Pull Request来改进这个项目！
+1. Select the device programmer file (devprg*.mbn)
+2. Select the digest file (*.bin)
+3. Select the signature file (*.bin)
+4. Click "Enter Firehose" button
 
-## 📞 支持与反馈
+### 2. Flash ROM Package
 
-- 提交Issue: [GitHub Issues](https://github.com/salokrwhite/OplusEdlTool/issues)
+1. Click the folder button to select ROM source:
+   - **Folder**: Select an extracted ROM folder containing IMAGES directory
+   - **File**: Select OFP or OPS encrypted ROM file (will be automatically decrypted)
+2. Select the rawprogram XML files to load
+3. Click "Load" to parse partitions
+4. Select partitions to flash (use checkbox)
+5. Click "Start Flash" to begin flashing
 
-## ⚖️ 法律声明
+### 3. Partition Operations
 
-本工具仅供教育和研究目的。用户应遵守当地法律法规，不得用于任何非法活动。开发者不对工具的滥用承担责任。
----
+- **Read Partitions**: Read partition table from device
+- **Read Selected**: Backup selected partitions to files
+- **Write Selected**: Write selected partitions to device
+- **Erase Selected**: Erase selected partitions
 
-**⭐ 如果这个项目对您有帮助，请给个Star支持一下！**
+### Options
+
+- **Export XML**: Export selected partitions to rawprogram XML when backing up
+- **Protect LUN5**: Skip flashing partitions in rawprogram5.xml to protect LUN5
+- **Auto Reboot**: Automatically reboot device after flashing
+
+## Project Structure
+
+```
+OplusEdlTool/
+├── App.axaml              # Application XAML
+├── App.axaml.cs           # Application entry point
+├── MainWindow.axaml       # Main window UI
+├── MainWindow.axaml.cs    # Main window logic
+├── AboutWindow.axaml      # About dialog
+├── Services/
+│   ├── EdlService.cs      # EDL communication service
+│   ├── LanguageService.cs # Multi-language support
+│   ├── OfpDecryptor.cs    # OFP file decryption
+│   ├── OpsDecryptor.cs    # OPS file decryption
+│   ├── GptParser.cs       # GPT partition table parser
+│   ├── RawProgramXmlProcessor.cs  # rawprogram XML parser
+│   ├── SuperMergeService.cs       # Super partition merge
+│   └── ProcessRunner.cs   # External process runner
+├── Tools/                 # External tools
+│   ├── fh_loader.exe      # Qualcomm Firehose loader
+│   ├── QSaharaServer.exe  # Qualcomm Sahara protocol server
+│   ├── lsusb.exe          # USB device detection
+│   ├── simg2img.exe       # Sparse image converter
+│   └── lpmake.exe         # Dynamic partition (super) image creation tool
+└── Fonts/                 # Custom fonts
+```
+
+## Dependencies
+
+- [Avalonia UI](https://avaloniaui.net/) - Cross-platform UI framework
+- [System.Management](https://www.nuget.org/packages/System.Management/) - WMI access for device detection
+
+## Disclaimer
+
+**USE AT YOUR OWN RISK!**
+
+This tool is provided for educational and development purposes only. Flashing firmware can potentially brick your device. The authors are not responsible for any damage caused by using this tool.
+
+- Always backup your data before flashing
+- Make sure you have the correct firmware for your device
+- Do not flash persist partition unless you know what you're doing
+
+## License
+
+This project is open source. See [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues and pull requests.
+
+## Acknowledgments
+
+- Qualcomm for the Firehose protocol
+- The Android development community
+- Coolapk@MouZei
