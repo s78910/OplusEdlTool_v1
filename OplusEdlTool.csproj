@@ -23,6 +23,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="v1_old_code\**" />
+    <EmbeddedResource Remove="v1_old_code\**" />
+    <None Remove="v1_old_code\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Tools\**\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
